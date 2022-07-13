@@ -12,7 +12,7 @@ export default function ContactUs() {
             </div>
             <div className={styles.imageWrapper}>
                 <Image 
-                    src="/calling.png" 
+                    src="/calling.svg" 
                     alt="man having a phonecall" 
                     layout='fill'
                     objectFit='cover'
