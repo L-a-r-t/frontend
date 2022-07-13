@@ -1,0 +1,17 @@
+@import "../variables";
+@import "../mixins";
+
+.container {
+    @include fsContainer();
+    h1 {
+        font-size: 3rem;
+        margin-block-start: 0;
+    }
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 5rem;
+}
+
+.imageWrapper {
+    position: relative;
+}

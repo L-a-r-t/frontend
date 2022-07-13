@@ -1,0 +1,35 @@
+@import "../variables";
+
+.container {
+    padding: 1rem 1.5rem;
+    font-size: 20px;
+    height: $header-height;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    a {
+        padding: 1rem 1.5rem;
+        border-radius: $radius;
+        transition: 0.3s ease-out;
+        &:hover {
+            background-color: $highlight;
+        }
+    }
+
+    .login {
+        @extend a;
+        background-color: $main;
+        color: $white;
+        font-weight: bold;
+        &:hover {
+            background-color: darken($main, 10);
+        }
+    }
+}
+
+.navLeft {
+    display: flex;
+    gap: 1rem;
+}
