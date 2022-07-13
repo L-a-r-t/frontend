@@ -7,15 +7,18 @@ export default function ContactForm() {
                 className={atoms.input}
                 type="text"
                 placeholder='Full name'
+                required
             />
             <input
                 className={atoms.input}
                 type="email"
                 placeholder='Email'
+                required
             />
             <textarea 
                 className={atoms.textarea}
                 placeholder='Message...'
+                required
             />
             <button 
                 className={atoms.button}

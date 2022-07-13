@@ -2,13 +2,12 @@
 @import "../mixins";
 
 .container {
-    @include fsContainer();
-
+    
     display: flex;
     flex-direction: column;
     gap: 2rem;
-
-    margin-bottom: 2rem;
+    
+    padding: 0rem 5rem 2rem 5rem;
 
     h1 {
         font-size: 3rem;
@@ -19,6 +18,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 2rem;
 
         h2 {
             font-size: 2rem;

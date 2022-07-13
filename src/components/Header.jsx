@@ -16,12 +16,9 @@ export default function Header() {
                         <a>Contact us</a>
                     </Link>
                 </div>
-                <a 
-                    href="#"
-                    className={styles.login}
-                >
-                    Log in
-                </a>
+                <Link href="/login">
+                    <a className={styles.login}>Log in</a>
+                </Link>
             </nav>
         </header>
     )
