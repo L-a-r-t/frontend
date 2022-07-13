@@ -1,5 +1,6 @@
 import styles from '../styles/pages/LoginSignup.module.scss'
 import atoms from '../styles/atoms.module.scss'
+import PasswordInput from '../components/PasswordInput'
 
 export default function Login() {
     return (
@@ -14,11 +15,8 @@ export default function Login() {
                             placeholder="Email"
                             required
                         />
-                        <input 
-                            className={atoms.input}
-                            type="password"
-                            placeholder="Password"
-                            required
+                        <PasswordInput 
+                            minLength={8}
                         />
                     </div>
                     <button
