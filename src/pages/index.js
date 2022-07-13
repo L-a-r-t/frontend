@@ -12,6 +12,7 @@ export default function Home({ name, dob, story }) {
           <button>Missing</button>
           <button>Heroes</button>
           <button>Our lives now</button>
+          <button>Animals</button>
         </div>
         <div className={styles.right}>
           <Carousel />
