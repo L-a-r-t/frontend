@@ -1,6 +1,8 @@
 import { useState } from "react"
 
 import atoms from '../styles/atoms.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 
 export default function PasswordInput({minLength}) {
     const [inputType, setInputType] = useState('password')
@@ -18,20 +20,21 @@ export default function PasswordInput({minLength}) {
                 placeholder="Password"
                 minLength={minLength ? minLength : 0}
                 required
-                style={{width: "100%"}}
+                style={{width: "100%", paddingRight: "2.5rem"}}
             />
             <button
                 type="button"
                 onClick={toggleInput}
                 style={{
-                    marginLeft: "-2rem",
+                    marginLeft: "-2.5rem",
+                    width: "2rem",
                     border: "none",
                     backgroundColor: "transparent",
                     cursor: "pointer",
                     display: "inline-block"
                 }}
             >
-                {inputType == "text" ? "o" : "-"}
+                <FontAwesomeIcon icon={inputType == "text" ? faEye : faEyeSlash}/>
             </button>
         </span>
     )
