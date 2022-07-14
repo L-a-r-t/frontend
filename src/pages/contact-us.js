@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import ContactForm from '../components/ContactForm'
+import ContactForm from '../components/forms/ContactForm'
 
 import styles from '../styles/pages/ContactUs.module.scss'
 
