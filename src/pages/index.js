@@ -1,19 +1,41 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import Carousel from '../components/Carousel'
 
 import styles from '../styles/pages/Home.module.scss'
 
 export default function Home({ name, dob, story }) {
+  const [showLeft, setShowLeft] = useState(false)
+
+  const toggleLeft = () => {
+    setShowLeft(current => !current)
+  }
+
+  const handleStoryType = (type) => {
+    // will be pluged into a backend
+  }
+
   return (
     <Fragment>
       <section className={styles.hero}>
-        <div className={styles.left}>
-          <button>In Memory</button>
-          <button>Missing</button>
-          <button>Heroes</button>
-          <button>Our lives now</button>
-          <button>Animals</button>
+        <div className={`${styles.left} ${showLeft ? styles.show : ''}`}>
+          <button onClick={() => handleStoryType('in-memory')}>In Memory</button>
+          <button onClick={() => handleStoryType('missing')}>Missing</button>
+          <button onClick={() => handleStoryType('heroes')}>Heroes</button>
+          <button onClick={() => handleStoryType('our-lives-now')}>Our lives now</button>
+          <button onClick={() => handleStoryType('animals')}>Animals</button>
+          {showLeft && 
+          <button onClick={toggleLeft} className={styles.hideButton}>X</button>
+          }
         </div>
+        {!showLeft &&        
+          <button 
+            className={styles.showButton}
+            aria-label="show story types"
+            onClick={toggleLeft}
+          >
+            <div aria-hidden />
+          </button>
+        }
         <div className={styles.right}>
           <Carousel />
         </div>

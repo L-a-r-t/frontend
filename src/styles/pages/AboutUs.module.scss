@@ -25,6 +25,10 @@
             margin-block-start: 0;
             margin-block-end: 1rem;
         }
+
+        @include mobile() {
+            flex-direction: column;
+        }
     }
 }
 
@@ -37,5 +41,5 @@
 }
 
 .descriptionWrapper {
-    width: 40rem;
+    width: clamp(24rem, 90%, 40rem);
 }

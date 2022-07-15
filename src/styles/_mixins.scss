@@ -17,6 +17,12 @@
     z-index: -9999;
 }
 
+@mixin mobile() {
+    @media screen and (max-width: 540px) {
+        @content;
+    }
+}
+
 @mixin tablet() {
     @media screen and (min-width: 720px) {
         @content;

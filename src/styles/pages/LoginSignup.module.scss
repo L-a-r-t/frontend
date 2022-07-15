@@ -16,7 +16,8 @@
 
     .formWrapper {
         padding: 2rem;
-        height: 70vh;
+        height: min(80vw, 70vh);
+        width: min(80vw, 50vh);
         border-radius: $radius;
         background-color: lighten($main, 25);
     
