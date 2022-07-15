@@ -6,7 +6,7 @@ import SidebarButton from '../components/SidebarButton'
 import styles from '../styles/pages/Home.module.scss'
 
 export default function Home({ name, dob, story }) {
-  const [active, toggleSidebar] = useSidebar()
+  const [active, toggleSidebar] = useSidebar(true)
 
   const handleStoryType = (type) => {
     // will be pluged into a backend

@@ -8,7 +8,7 @@ import styles from "../styles/pages/Admin.module.scss"
 
 export default function Admin({ authorized, user }) {
     const [active, setActive] = useState('content')
-    const [sidebar, toggleSidebar] = useSidebar()
+    const [sidebar, toggleSidebar] = useSidebar(true)
 
     const handleActive = (target) => {
         setActive(target)
