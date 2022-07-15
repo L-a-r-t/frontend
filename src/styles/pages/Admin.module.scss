@@ -6,16 +6,6 @@
     display: flex;
     border-top: 1px solid black;
 
-    @include maxTablet() {
-        nav {
-            position: fixed;
-            width: 100%;
-            left: -100%;
-            z-index: 5;
-            transition: 0.3s ease-out;
-        }
-    }
-
     .active {
         left: 0;
     }
@@ -54,10 +44,30 @@
             }
         }
 
+        .hideButton {
+            visibility: collapse;
+            position: absolute;
+        }
+
         .logoutButton {
             border-bottom: none;
             border-top: 1px solid black;
             color: #C44;
+        }
+    }
+
+    @include maxTablet() {
+        nav {
+            position: fixed;
+            width: 100%;
+            left: -100%;
+            z-index: 5;
+            transition: 0.3s ease-out;
+
+            .hideButton {
+                position: relative;
+                visibility: visible;
+            }
         }
     }
 
