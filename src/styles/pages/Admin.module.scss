@@ -6,11 +6,30 @@
     display: flex;
     border-top: 1px solid black;
 
+    @include maxTablet() {
+        nav {
+            position: fixed;
+            width: 100%;
+            left: -100%;
+            z-index: 5;
+            transition: 0.3s ease-out;
+        }
+    }
+
+    .active {
+        left: 0;
+    }
     nav {
-        min-width: 24rem;
+
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        background-color: white;
+        min-width: 20rem;
+
+        @include laptop() {
+            min-width: 24rem;
+        }
 
         border-right: 1px solid black;
         
@@ -44,7 +63,11 @@
 
     .right {
         flex-grow: 1;
-        padding: 0 8rem;
+        padding: 0 4rem;
         overflow-y: scroll;
+
+        @include laptop() {
+            padding: 0 8rem;
+        }
     }
 }

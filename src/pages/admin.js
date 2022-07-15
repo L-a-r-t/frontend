@@ -1,12 +1,19 @@
-import Link from "next/link"
 import { Fragment, useState } from "react"
 import AddContentForm from "../components/forms/AddContentForm"
 import InviteAdminForm from "../components/forms/InviteAdminForm"
+import useSidebar from "../hooks/useSidebar"
+import SidebarButton from "../components/SidebarButton"
 
 import styles from "../styles/pages/Admin.module.scss"
 
 export default function Admin({ authorized, user }) {
     const [active, setActive] = useState('content')
+    const [sidebar, toggleSidebar] = useSidebar()
+
+    const handleActive = (target) => {
+        setActive(target)
+        toggleSidebar()
+    }
 
     const handleLogout = () => {
         // To be linked to auth service/backend
@@ -16,29 +23,42 @@ export default function Admin({ authorized, user }) {
         <Fragment>
             {authorized &&          
             <div className={styles.container}>
-                <nav>
+                <nav className={sidebar ? styles.active : ''}>
                     <div>
                         <button 
                             type="button"
-                            onClick={() => setActive('content')}
+                            onClick={() => handleActive('content')}
                         >
                             Add content
                         </button>
                         <button 
                             type="button"
-                            onClick={() => setActive('invite')}
+                            onClick={() => handleActive('invite')}
                         >
                             Add new admin
                         </button>
                     </div>
-                    <button 
-                        type="button" 
-                        className={styles.logoutButton}
-                        onClick={handleLogout}
-                    >
-                        Log out
-                    </button>
+                    <div>
+                        {sidebar && 
+                        <button
+                            className={styles.hideButton}
+                            onClick={toggleSidebar}
+                        >
+                            X
+                        </button>
+                        }
+                        <button 
+                            type="button" 
+                            className={styles.logoutButton}
+                            onClick={handleLogout}
+                        >
+                            Log out
+                        </button>
+                    </div>
                 </nav>
+                {!sidebar &&
+                <SidebarButton toggleSidebar={toggleSidebar} tablet />
+                }
                 <div className={styles.right}>
                     <h1>Welcome, {user}</h1>
                     {active == "content" && 
