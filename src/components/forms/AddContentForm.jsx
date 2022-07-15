@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import atoms from '../../styles/atoms.module.scss'
+import forms from '../../styles/components/forms.module.scss'
 
 export default function AddContentForm() {
     const [firstName, setFirstName] = useState('')
@@ -15,8 +16,8 @@ export default function AddContentForm() {
     }
 
     return (
-        <form className={atoms.form} onSubmit={handleSubmit}>
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <form className={`${atoms.form} ${forms.addContentForm}`} onSubmit={handleSubmit}>
+            <div>
                 <input
                     className={atoms.input}
                     type="text"
