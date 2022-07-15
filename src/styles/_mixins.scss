@@ -29,6 +29,12 @@
     }
 }
 
+@mixin maxTablet() {
+    @media screen and (max-width: 720px) {
+        @content;
+    }
+}
+
 @mixin laptop() {
     @media screen and (min-width: 1080px) {
         @content;

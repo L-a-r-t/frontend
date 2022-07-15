@@ -1,14 +1,12 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import Carousel from '../components/Carousel'
+import useSidebar from '../hooks/useSidebar'
+import SidebarButton from '../components/SidebarButton'
 
 import styles from '../styles/pages/Home.module.scss'
 
 export default function Home({ name, dob, story }) {
-  const [showLeft, setShowLeft] = useState(false)
-
-  const toggleLeft = () => {
-    setShowLeft(current => !current)
-  }
+  const [active, toggleSidebar] = useSidebar()
 
   const handleStoryType = (type) => {
     // will be pluged into a backend
@@ -17,24 +15,18 @@ export default function Home({ name, dob, story }) {
   return (
     <Fragment>
       <section className={styles.hero}>
-        <div className={`${styles.left} ${showLeft ? styles.show : ''}`}>
+        <div className={`${styles.left} ${active ? styles.show : ''}`}>
           <button onClick={() => handleStoryType('in-memory')}>In Memory</button>
           <button onClick={() => handleStoryType('missing')}>Missing</button>
           <button onClick={() => handleStoryType('heroes')}>Heroes</button>
           <button onClick={() => handleStoryType('our-lives-now')}>Our lives now</button>
           <button onClick={() => handleStoryType('animals')}>Animals</button>
-          {showLeft && 
-          <button onClick={toggleLeft} className={styles.hideButton}>X</button>
+          {active && 
+          <button onClick={toggleSidebar} className={styles.hideButton}>X</button>
           }
         </div>
-        {!showLeft &&        
-          <button 
-            className={styles.showButton}
-            aria-label="show story types"
-            onClick={toggleLeft}
-          >
-            <div aria-hidden />
-          </button>
+        {!active &&        
+        <SidebarButton toggleSidebar={toggleSidebar} />  
         }
         <div className={styles.right}>
           <Carousel />
