@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-const useSidebar = () => {
-    const [active, setActive] = useState(false)
+const useSidebar = (startActive) => {
+    const [active, setActive] = useState(startActive)
 
     const toggleSidebar = () => {
         setActive(current => !current)
