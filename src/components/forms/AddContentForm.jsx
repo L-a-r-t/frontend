@@ -5,6 +5,8 @@ export default function AddContentForm() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [dob, setDOB] = useState()
+    const [storyType, setStoryType] = useState('')
+    const [storyStatus, setStoryStatus] = useState('')
     const [story, setStory] = useState('')
 
     const handleSubmit = (e) => {
@@ -34,6 +36,12 @@ export default function AddContentForm() {
                     required
                 />
             </div>
+            <label 
+                htmlFor="date" 
+                className={atoms.label}
+            >
+                Date of birth
+            </label>
             <input
                 className={atoms.input}
                 type="date"
@@ -42,6 +50,30 @@ export default function AddContentForm() {
                 onChange={e => setDOB(e.target.value)}
                 required
             />
+            <select 
+                className={atoms.input}
+                name="story-type"
+                value={storyType}
+                onChange={e => setStoryType(e.target.value)}
+                required
+            >
+                <option>-- Select a type --</option>
+                <option value="person">Person</option>
+                <option value="animal">Animal</option>
+            </select>
+            <select 
+                className={atoms.input}
+                name="story-status"
+                value={storyStatus}
+                onChange={e => setStoryStatus(e.target.value)}
+                required
+            >
+                <option>-- Select a status --</option>
+                <option value="in-memory">In Memory</option>
+                <option value="missing">Missing</option>
+                <option value="heroes">Heroes</option>
+                <option value="our-lives-now">Our lives now</option>
+            </select>
             <textarea 
                 className={atoms.textarea}
                 name='story'

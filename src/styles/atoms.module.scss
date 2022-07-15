@@ -31,6 +31,10 @@
     @include formInput();
 }
 
+.label {
+    margin-bottom: -0.75rem;
+}
+
 .textarea {
     @include formInput();
     resize: vertical;
