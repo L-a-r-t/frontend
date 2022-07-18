@@ -1,12 +1,21 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import Carousel from '../components/Carousel'
 import useSidebar from '../hooks/useSidebar'
 import SidebarButton from '../components/SidebarButton'
 
 import styles from '../styles/pages/Home.module.scss'
 
-export default function Home({ name, dob, story }) {
+export default function Home({ data }) {
   const [active, toggleSidebar] = useSidebar(true)
+
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    console.log(index, data.length)
+    setTimeout(() => {
+      setIndex(current => current == data.length - 1 ? 0 : current + 1)
+    }, 5000)
+  }, [index, data])
 
   const handleStoryType = (type) => {
     // will be pluged into a backend
@@ -29,21 +38,21 @@ export default function Home({ name, dob, story }) {
         <SidebarButton toggleSidebar={toggleSidebar} />  
         }
         <div className={styles.right}>
-          <Carousel />
+          <Carousel image={data[index].image} alt={data[index].alt} />
         </div>
       </section>
       <section className={styles.description}>
         <div className={styles.name}>
           <span>
-            {name}
+            {data[index].name}
           </span>
         </div>
         <p className={styles.dob}>
-          {dob}
+          {data[index].dob}
         </p>
         <div className={styles.story}>
           {/* This regex match splits the story component into parts of equal length */}
-          {story.match(/[\s\S]{1,280}/g).map(part => (
+          {data[index].story.match(/[\s\S]{1,280}/g).map(part => (
             <p key={part.substring(0, 16)}>
               {part}
             </p>
@@ -57,9 +66,29 @@ export default function Home({ name, dob, story }) {
 export async function getStaticProps() {
   return {
     props: {
-      name: "John Brown",
-      dob: "06-16-1987",
-      story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus odio nibh, et vehicula neque sollicitudin vel. Aliquam erat volutpat. Sed efficitur libero vitae ante fermentum ultricies. Donec fringilla diam ac magna viverra placerat. Duis vel magna dui. Suspendisse a sodales ligula. Vestibulum justo risus, feugiat et nulla nec, varius vestibulum nisl. Sed efficitur libero vitae ante fermentum ultricies. Donec fringilla diam ac magna viverra placerat.",
+      data: [
+        {
+          name: "John Brown",
+          dob: "06-16-1987",
+          story: "This is the first element, consectetur adipiscing elit. Quisque cursus odio nibh, et vehicula neque sollicitudin vel. Aliquam erat volutpat. Sed efficitur libero vitae ante fermentum ultricies. Donec fringilla diam ac magna viverra placerat. Duis vel magna dui. Suspendisse a sodales ligula. Vestibulum justo risus, feugiat et nulla nec, varius vestibulum nisl. Sed efficitur libero vitae ante fermentum ultricies. Donec fringilla diam ac magna viverra placerat.",
+          image: "/family.jpg",
+          alt: "family of four walking in the street"
+        },
+        {
+          name: "Louise Smith",
+          dob: "11-22-1990",
+          story: "This is the second element, consectetur adipiscing elit. Quisque cursus odio nibh, et vehicula neque sollicitudin vel. Aliquam erat volutpat. Sed efficitur libero vitae ante fermentum ultricies. Duis vel magna dui. Suspendisse a sodales ligula. Vestibulum justo risus, feugiat et nulla nec, varius vestibulum nisl. Sed efficitur libero vitae ante fermentum ultricies. Donec fringilla diam ac magna viverra placerat. Donec fringilla diam ac magna viverra placerat.",
+          image: "/woman.jpg",
+          alt: "woman wearing a yellow shirt with long sleeves"
+        },
+        {
+          name: "Sabo",
+          dob: "02-27-2016",
+          story: "Here is the thrid element, consectetur adipiscing elit. Quisque cursus odio nibh, et vehicula neque sollicitudin vel. Sed efficitur libero vitae ante fermentum ultricies. Donec fringilla diam ac magna viverra placerat. Aliquam erat volutpat. Duis vel magna dui. Suspendisse a sodales ligula. Vestibulum justo risus, feugiat et nulla nec, varius vestibulum nisl. Sed efficitur libero vitae ante fermentum ultricies. Donec fringilla diam ac magna viverra placerat.",
+          image: "/dog.jpg",
+          alt: "dog with golden fur"
+        }
+      ]
     },
   }
 }
