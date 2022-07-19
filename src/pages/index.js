@@ -12,9 +12,10 @@ export default function Home({ data }) {
 
   useEffect(() => {
     console.log(index, data.length)
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setIndex(current => current == data.length - 1 ? 0 : current + 1)
     }, 5000)
+    return () => clearTimeout(timer)
   }, [index, data])
 
   const handleStoryType = (type) => {
